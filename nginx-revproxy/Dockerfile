@@ -14,6 +14,9 @@ RUN certbot-auto --os-packages-only -n
 COPY ./cmd.sh /usr/local/bin/cmd.sh
 RUN chmod +x /usr/local/bin/cmd.sh
 
+RUN certbot-auto certonly --standalone -d matsura-yuma.site -d www.matsura-yuma.site -m lemonburst1958@gmail.com --agree-tos -n
+
+
 # RUN git clone https://github.com/letsencrypt/letsencrypt
 # WORKDIR letsencrypt
 # RUN ls

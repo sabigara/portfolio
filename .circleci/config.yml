@@ -23,4 +23,4 @@ jobs:
       - deploy:
           name: Start master deploy
           command: |
-            echo $USER_NAME; ssh $USER_NAME@$HOST_NAME $USER_NAME/deploy.sh            
+            echo $USER_NAME; ssh $USER_NAME@$HOST_NAME '~/deploy.sh'

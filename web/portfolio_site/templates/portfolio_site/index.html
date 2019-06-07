@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- {% load static %} -->
+    <link rel="stylesheet" href="{% static '/css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <title>マツウラユウマのポートフォリオ</title>
+</head>
+
+<body>
+<header class="theme-color">
+    <div class="header-content global-width">
+        <a href="#top" class="logo js-smooth-scroll">
+            <h1>
+                <img src="{% static 'img/logo.png' %}">
+            </h1>
+        </a>
+        <nav class="global-nav">
+            <ul class="bottom-line-parent">
+                <li><a href="#top" class="bottom-line-cell js-smooth-scroll">トップ</a></li>
+                <li><a href="#works" class="bottom-line-cell js-smooth-scroll">制作物</a></li>
+                <li><a href="#skill" class="bottom-line-cell js-smooth-scroll">スキル</a></li>
+                <!-- <li><a href="#me" class="bottom-line-cell js-smooth-scroll">自己紹介</a></li> -->
+                <li><a href="#contact" class="bottom-line-cell js-smooth-scroll">お問い合わせ</a></li>
+            </ul>
+        </nav>
+        <div id="drawer-menu">
+            <input id="nav-input" type="checkbox" class="nav-hidden">
+            <label id="nav-open" for="nav-input"><span></span></label>
+            <label class="nav-hidden" id="nav-close" for="nav-input"></label>
+            <div id="drawer-content">
+                <nav class="drawer-nav ">
+                    <ul>
+                        <li><a href="#top" class="js-smooth-scroll">トップ</a></li>
+                        <li><a href="#works" class="js-smooth-scroll">制作物</a></li>
+                        <li><a href="#skill" class="js-smooth-scroll">スキル</a></li>
+                        <!-- <li><a href="#me" class="js-smooth-scroll">自己紹介</a></li> -->
+                        <li><a href="#contact" class="js-smooth-scroll">お問い合わせ</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<main>
+    <div class="inner">
+        <section id="top" class="content-section">
+            <div class="top-box theme-color">
+                <div>マツウラユウマ</div>
+                <div>の</div>
+                <div>ポートフォリオ</div>
+                <a href="#works" id="down-button" class="down-button js-smooth-scroll">
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+            </div>
+        </section>
+        <section id="works" class="content-section">
+            <!-- <div class="container"> -->
+                <div class="section-title">
+                    <h2>制作物</h2>
+                    <!-- <p class="">ここに説明文</p> -->
+                </div>
+                <div class="section-container">
+                    <section id="honsul">
+                        <div class="work-box global-width">
+                            <div class="col-2">
+                                <p class="img-box">
+                                    <img class="work-image" src="{% static 'img/honsul.png' %}">
+                                </p>
+                                <div class="work-description">
+                                    <div class="work-title">
+                                        <h3>本サルタント</h3>
+                                        <p class="sub-title">読書SNS</p>
+                                    </div>
+                                    <p>
+                                        読んだ本について質問・回答できるiOSアプリです。
+                                        本についているバーコードをiPhoneのカメラで読み取ることで、自分の本棚に登録できます。
+                                    </p>
+                                    <h4>技術</h4>
+                                    <p>
+                                        サーバーはPythonのFlaskで、RESTfulなAPIを提供しています。
+                                    </p>
+                                    <p>
+                                        メールアドレス認証、パスワード変更、モデルへのCRUDといった基本的な動作に加え、
+                                        本の情報をamazonのAPIから取得することなどもできます。
+                                    </p>
+                                    <p>
+                                        このアプリはheroku上で運用していますが、一般的なLinuxサーバーへデプロイするスキルもあります。
+                                    </p>
+                                </div>
+
+                            </div>
+                            <ul class="tech-logos">
+                                <li><img src="{% static 'img/tech-logos/python.svg' %}" alt="python,logo"></li>
+                                <li><img src="{% static 'img/tech-logos/flask.svg' %}" alt="flask,logo"></li>
+                                <li><img src="{% static 'img/tech-logos/swift.svg' %}" alt="swift,logo"></li>
+                                <li><img src="{% static 'img/tech-logos/heroku.svg' %}" alt="heroku,logo"></li>
+                            </ul>
+                            <div class="btn-wrap">
+                                <a class="theme-color" href="https://itunes.apple.com/jp/app//id1451925807?mt=8" target="_blank">
+                                    App Store
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="sabigara-blog">
+                        <div class="work-box global-width">
+                            <div class="col-2 flex-rev">
+                                <p class="img-box">
+                                    <img class="work-image" src="{% static 'img/sabigara-blog.png' %}">
+                                </p>                            
+                                <div class="work-description">
+                                        <div class="work-title">
+                                            <h3>sabigara Blog</h3>
+                                            <p class="sub-title">作曲ブログ</p>
+                                        </div>
+                                    <p>
+                                        パソコンによる作曲の仕方などを解説するブログです。
+                                        「書きたいことを書く」というよりも、広告収入を目的として運営しています。
+                                    </p>
+                                    <p>
+                                        Google AnalyticsやSearch Consoleを使用し、SEOを意識したコンテンツを作成しています。
+                                        その効果もあり、記事数のわりにはそれなりの集客・収益を実現できています。
+                                    </p>
+                                    <h4>実績<span class="sub-title">（2019年6月現在）</span></h4>
+                                    <dl>
+                                        <dt>月間PV：</dt>
+                                        <dd>３万</dd>
+                                        <dt>月間収益：</dt>
+                                        <dd>３万</dd>
+                                        <dt>記事数：</dt>
+                                        <dd>８０</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                            <ul class="tech-logos">
+                                    <li><img src="{% static 'img/tech-logos/wordpress.svg' %}" alt="wordpress,logo"></li>
+                                </ul>
+                                <div class="btn-wrap">
+                                    <a class="theme-color" href="https://sabi-gara.com" target="_blank">サイト</a>
+                                </div>
+                        </div>
+                    </section>
+                <!-- </div> -->
+                <!-- <section id="songs">
+                        <div class="work-box col-2 flex-rev global-width">
+                            <div class="work-description">
+                                    <h3>作った曲</h3>
+                                <p>
+    
+                                </p>
+                            </div>
+                            <iframe width="80%" height="350" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/550144029&color=%2300d1ff&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                        </div>                    
+                    </section>
+            </section> -->
+        </section>
+        <section id="skill" class="content-section">
+            <div class="section-title">
+                <h2>スキル</h2>
+            </div>
+            <div class="boxes global-width section-container">
+                <div id="server-lang" class="box">
+                    <h3>サーバーサイド</h3>
+                    <ul class="tech-logos">
+                        <li><img src="{% static 'img/tech-logos/python.svg' %}" alt="python,logo"></li>
+                        <li><img src="{% static 'img/tech-logos/flask.svg' %}" alt="flask,logo"></li>
+                        <li><img src="{% static 'img/tech-logos/csharp.svg' %}" alt="csharp"></li>
+                    </ul>
+                    <div class="box-description">
+                        <p>
+                            WEBやツール制作のメインはPythonです。
+                            「マイクロフレームワーク」と呼ばれるFlaskを使うことで、さまざまな機能追加の経験が得られました。
+                        </p>
+                        <p>
+                            前勤務先ではC#による業務系.NETアプリを開発していました。
+                        </p>
+                    </div>
+                </div>
+                <div id="server-middleware" class="box">
+                    <h3>ミドルウェア</h3>
+                    <ul class="tech-logos">
+                        <li><img src="{% static '/img/tech-logos/mysql.svg' %}" alt="mysql,logo"></li>
+                        <li><img src="{% static 'img/tech-logos/docker.svg' %}" alt="docker,logo"></li>
+                        <li><img src="{% static 'img/tech-logos/nginx.svg' %}" alt="nginx,logo"></li>
+                        <li><img src="{% static 'img/tech-logos/bash.svg' %}" alt="bash,logo"></li>
+                    </ul>
+                    <div class="box-description">
+                        <p>
+                            Linux環境でのWEBサービス構築はひと通り可能です。
+                            DockerコンテナをVPSやEC2上へデプロイした経験もあります。
+                        </p>
+                        <p>
+                            CLツールはまだ使用したことがないので勉強していきたいと思っています。
+                        </p>
+                    </div> 
+                </div>
+                <div id="front-lang" class="box">
+                    <h3>フロントエンド</h3>
+                    <ul class="tech-logos">
+                        <li><img src="{% static 'img/tech-logos/swift.svg' %}" alt="swift,logo"></li>
+                        <li><img src="{% static 'img/tech-logos/html.svg' %}" alt="html,logo"></li>
+                        <li><img src="{% static 'img/tech-logos/css.svg' %}" alt="css,logo"></li>
+                        <li><img src="{% static 'img/tech-logos/js.svg' %}" alt="js,logo"></li>
+                    </ul>
+                    <div class="box-description">
+                        <p>
+                            「本サルタント」のクライアントアプリはSwift製です。
+                            このサイトはフレームワークを使わず、htmlコーディングで作成しました。
+                        </p>
+                        <p>
+                            どちらかというとサーバーサイドがメインですが、機会があればフロントも深めていきたいです。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- <section id="me" class="content-section">
+            <div class="section-title">
+                <h2>自己紹介</h2>
+            </div>
+            <div class="boxes global-width section-container">
+                <div id="server-lang" class="box">
+                    <h3>趣味</h3>
+                    <div class="box-description">
+                        <p>
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+        <section id="contact" class="content-section">
+            <!-- <div class="container"> -->
+                <div class="section-title">
+                    <h2>お問い合わせ</h2>
+                    <!-- <p class="">ここに説明文</p> -->
+                </div>
+                <div class="contact-form global-width section-container">
+                    <div class="form-box">
+                        <form action="program.php" method="post">
+                            <dl>
+                                <dt>名前</dt>
+                                <dd>
+                                    <input type="text" name="name" required placeholder="田中 太郎">
+                                </dd>
+                                <dt>ふりがな</dt>
+                                <dd>
+                                    <input type="text" name="kana" required placeholder="たなか たろう">
+                                </dd>
+                                <dt>メールアドレス</dt>
+                                <dd><input type="email" name="email" required placeholder="example@test.com"></dd>
+                                <dt>お問い合わせ・ご質問内容</dt>
+                                <dd><textarea name="comment" cols="20" rows="5" required></textarea></dd>
+                            </dl>
+                            <p class="submit"><input type="submit" name="submit" value="送信" class="theme-color"></p>
+                        </form>
+                    </div>
+                </div>
+            <!-- </div> -->
+        </section>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-content global-width">
+        <p><small>&COPY松浦悠磨</small></p>
+    </div>
+</footer>
+
+<script type="module" src="{% static 'js/smoothscroll.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

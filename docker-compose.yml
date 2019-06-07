@@ -1,0 +1,40 @@
+version: "3"
+services:
+  nginx-revproxy:
+    build: ./nginx-revproxy
+    ports: 
+      - 80:80
+    depends_on:
+      - web
+    environment:
+      WORKER_PROCESSES: 2
+      WORKER_CONNECTIONS: 1024
+      KEEPALIVE_TIMEOUT: 65
+      GZIP: "on"
+      BACKEND_HOST: web:8000
+      BACKEND_MAX_FAILS: 3
+      BACKEND_FAIL_TIMEOUT: 10s
+      SERVER_PORT: 80
+      LOG_STDOUT: "false"
+      STATIC_FOLDER: /static/
+    volumes:
+      - static:/static
+    networks: 
+      - nginx_network
+
+  web:
+    build: ./web
+    expose:
+      - "8000"
+    restart: always
+    volumes:
+      - static:/opt/portfolio/static
+    networks:
+      - nginx_network
+
+volumes:
+  static:
+
+networks:
+  nginx_network:
+    driver: bridge

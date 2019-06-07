@@ -1,0 +1,741 @@
+/* general */
+
+html {
+    height: 100%;
+    font-size: 16px;
+    font-family: "Helvetica Neue", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "Arial", "Meiryo", "sans-serif";
+}
+
+body {
+    height: 100%;
+}
+
+ul {
+    padding: 0;
+}
+
+dl {
+    line-height: 2;
+}
+
+dt {
+    float: left;
+    clear: both;
+}
+
+dd {
+    margin: 0;
+    padding: 0 0 0 5em;
+}
+
+.global-width {
+    width: 1150px;
+}
+
+small {
+    color: #888;
+}
+
+.col-2 {
+    display: flex;
+}
+
+.flex-center {
+    justify-content: center;
+}
+
+.flex-rev {
+    flex-direction: row-reverse;
+}
+
+.theme-color {
+    background-color: #26c198;
+}
+
+.theme-color-font {
+    color: #13838c;
+}
+
+p {
+    line-height: 2;
+}
+
+a {
+    text-decoration: none;
+    /* color: #000; */
+}
+
+.content-section {
+    margin-top: -53px;
+    padding-top: 53px;
+}
+
+/* header */
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    /* box-shadow: 0 0 4px #aaa; */
+}
+
+header .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    height: 53px;
+}
+
+header a.logo h1 {
+    font-size: 1.3em;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header a.logo img {
+    height: 50px;
+}
+
+header .global-nav {
+    display: flex;
+    align-items: center;
+    margin: 0 0 0 auto;
+    padding: auto;
+}
+
+header ul {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    height: 53px;
+}
+
+
+
+header ul li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    height: 100%;
+    padding: 0 20px;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+.bottom-line-cell {
+    border-bottom: 4px solid #26c198;
+}
+
+.bottom-line-cell:hover {
+    border-bottom: 4px solid #eee;
+}
+
+.bottom-line-on {
+    border-bottom: 4px solid #eee;
+    /* animation: fadeIn 2s ease 0s 1 normal;
+    -webkit-animation: fadeIn 2s ease 0s 1 normal; */
+}
+
+/* @keyframes fadeIn {
+    0% {opacity: 0}
+    100% {opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+    0% {opacity: 0}
+    100% {opacity: 1}
+} */
+
+
+/* header ul li a:hover {
+    opacity: 0.3;
+} */
+
+/* drawer menu */
+
+#drawer-menu {
+    position: relative;
+    display: none;
+    margin-left: 10px;
+}
+
+/*チェックボックス等は非表示に*/
+.nav-hidden {
+    display:none;
+}
+
+/*アイコンのスペース*/
+#nav-open {
+    display: inline-block;
+    width: 30px;
+    height: 22px;
+    vertical-align: middle;
+}
+
+/*ハンバーガーアイコンをCSSだけで表現*/
+#nav-open span, #nav-open span:before, #nav-open span:after {
+    position: absolute;
+    height: 3px;/*線の太さ*/
+    width: 25px;/*長さ*/
+    border-radius: 3px;
+    background: #000;
+    display: block;
+    content: '';
+    cursor: pointer;
+}
+
+#nav-open span:before {
+    bottom: -8px;
+}
+
+#nav-open span:after {
+    bottom: -16px;
+}
+
+/*閉じる用の薄黒カバー*/
+#nav-close {
+    display: none;/*はじめは隠しておく*/
+    position: fixed;
+    z-index: 99;
+    top: 0;/*全体に広がるように*/
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0;
+    transition: .3s ease-in-out;
+}
+
+/*中身*/
+#drawer-content {
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;/*最前面に*/
+    width: 90%;/*右側に隙間を作る（閉じるカバーを表示）*/
+    max-width: 170px;/*最大幅（調整してください）*/
+    height: 100%;
+    background: #fff;
+    transition: .3s ease-in-out;/*滑らかに表示*/
+    -webkit-transform: translateX(-105%);
+    transform: translateX(-105%);/*左に隠しておく*/
+}
+
+/*チェックが入ったらもろもろ表示*/
+    #nav-input:checked ~ #nav-close {
+    display: block;/*カバーを表示*/
+    opacity: .5;
+}
+
+#nav-input:checked ~ #drawer-content {
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);/*中身を表示（右へスライド）*/
+    box-shadow: 6px 0 25px rgba(0,0,0,.15);
+}
+
+/* #drawer-content {
+
+} */
+
+#drawer-content nav {
+    width: 100%;
+}
+
+#drawer-menu nav ul {
+    display: block;
+
+}
+#drawer-menu nav ul li:hover {
+    background-color: #eee;
+}
+
+#drawer-menu nav ul li a {
+    color: #333;
+    padding: 14px 10px 14px 16px;
+}
+
+/* main */
+
+main {
+    width: 100%;
+}
+
+.inner {
+    padding-top: 53px;
+    min-height: 100vh;
+    margin: 0 auto;
+    background-color: white;
+}
+
+h1, h2, h3, h4, .sub-title {
+    font-family: "M PLUS Rounded 1c";
+    text-align: center;
+}
+
+span.subtitle {
+    font-size: 0.2em;
+}
+
+h2 {
+    font-size: 2em;
+    font-weight: 500;
+}
+
+h3 {
+    font-size: 2em;
+    font-weight: 300;
+    color: #444;
+}
+
+h4 {
+    font-size: 1.2em;
+    color: #444;
+}
+
+span.sub-title {
+    font-size: 0.8em;
+    padding-left: 20px;
+    color: #999;
+}
+
+p.sub-title {
+    font-size: 1.2em;
+    padding-left: 20px;
+    color: #999;
+}
+
+.section-title h2 {
+    margin: 50px 0;
+}
+
+/* top */
+
+div.top-box {
+    height: calc(100vh - 53px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* padding-bottom:  200px; */
+    box-sizing: border-box;
+    color: #fff;
+    font-family: "M PLUS Rounded 1c";
+}
+
+div.top-box div {
+    font-size: 3em;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.down-button {
+    font-size: 60px;
+    color: #fff;
+    margin-top: 40px;
+}
+
+
+/* works */
+
+.section-title {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: #6bceb3;
+    height: 160px;
+}
+
+.section-title h2 {
+    color: #fff;
+}
+
+#works section {
+    border-bottom: 1px solid #f1f1f1;
+}
+
+#works .work-box h2 {
+    margin-bottom: 5px;
+}
+
+.work-title {
+    display: flex;
+    justify-content: center;
+}
+
+.work-title p {
+    margin: auto 0;
+}
+
+.work-box {
+    margin: 80px auto;
+}
+
+#works section:first-of-type .work-box {
+    margin-top: 20px;
+}
+
+.work-box .flex-rev .work-description {
+    padding-right: 60px;
+}
+
+.work-box .work-description {
+    padding-right: 0;
+    padding-left: 60px;
+    /* line-height: 2; */
+    width: 80%;
+}
+
+.img-box {
+    text-align: center;
+}
+
+#honsul .work-description {
+    padding-top: 30px;
+    width: 600px;
+}
+
+#honsul h3 span.sub-title {
+    vertical-align: 1px;
+}
+
+#honsul .work-image {
+    width: 500px;
+}
+
+#sabigara-blog .work-image {
+    width: 600px;
+}
+
+
+#works h2 {
+    text-align: center;
+}
+
+#works h3 {
+    font-size: 2em;
+    margin: 10px 0;
+}
+
+#works h4 {
+    font-size: 1.2em;
+}
+
+ul.tech-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    margin: 50px auto;
+    list-style-type: none;
+}
+
+ul.tech-logos li img {
+    width: 100%;
+}
+
+/* skill */
+
+div.boxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 80px auto 120px auto;
+}
+
+div.box {
+    width: 350px;
+}
+
+div.box {
+    margin: 40px 10px 0 10px; 
+    border: 1px solid #f1f1f1; 
+}
+
+div.box h3 {
+    font-size: 1em;
+}
+
+#skill ul.tech-logos {
+    width: 92%;
+    height: 60px;
+    justify-content: space-between;
+    margin: 20px auto;
+}
+
+.box-description {
+    padding: 0 15px;
+    font-size: 0.9em;
+}
+
+
+
+/* me */
+
+/* contact */
+
+.contact-form {
+    margin: 0 auto;
+    padding: 50px 0;
+}
+
+.form-box {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.contact-form .must {
+    margin: 0 5px;
+    color: #d23939;
+}
+
+.contact-form p {
+    margin: 0 0 5 0px;
+}
+.contact-form dl {
+    margin: 0;
+}
+
+.contact-form dl dt {
+    padding: 10px 0;
+}
+
+.contact-form dl dd {
+    padding: 10px 0 10px 15em;
+}
+
+.contact-form input,
+.contact-form textarea {
+    border: solid 1px #ccc;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.contact-form input[name="email"] {
+    width: 50%;
+}
+
+.contact-form textarea {
+    width: 100%;
+}
+
+.contact-form .submit {
+    margin: 10px 0;
+    text-align: center;
+}
+
+.contact-form input[type="submit"] {
+    padding: 20px;
+    width: 160px;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.contact-form input[type="submit"]:hover {
+    opacity: 0.8;
+}
+
+/* last child */
+
+/* .content-section:last-child .section-container {
+    height: calc(100vh - 213px);
+    padding-top: 50px;
+    box-sizing: border-box;
+} */
+
+
+/* footer */
+
+footer {
+    background-color: #bfefe2;
+}
+
+footer .footer-content {
+    padding: 20px 0;
+    margin: 0 auto;
+}
+
+footer .footer-content p {
+    text-align: center;
+}
+
+/* parts */
+
+.btn-wrap {
+    text-align: center;
+}
+
+.btn-wrap a {
+    display: inline-block;
+    padding: 1em 1.5em;
+    text-decoration: none;
+    margin: 10px 0;
+    color: #FFF;
+    border-radius: 3px;
+}
+
+.btn-wrap a:hover {
+    opacity: 0.8;
+}
+
+
+@media (max-width:1200px){
+    .global-width {
+        width: 100%;
+    }
+
+    .col-2 {
+        display: block;
+    }
+
+    .work-box .work-description {
+        width: 600px;
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    .work-box .flex-rev .work-description {
+        padding: 0;
+    }
+
+    #honsul .work-description {
+        padding: 0 0 20px 0;
+    }
+
+    main h3 {
+        text-align: center;
+    }
+
+    .form-box {
+        width: 80%;
+    }
+
+    .contact-form input[name="email"] {
+        width: 70%;
+    }
+}
+
+@media (max-width: 800px) {
+
+    header .global-nav {
+        display: none;
+    }
+
+    div.top-box div {
+        font-size: 2.7em;
+    }
+
+    #drawer-menu {
+        display: block;
+      }
+
+    header a.logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%)
+    }
+
+    header a.logo h1 {
+        width: 370px;
+    }
+
+    
+    #honsul .work-description {
+        width: 80%;
+    }
+
+    .work-box .work-description {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    #honsul .work-image {
+        width: 70%;
+    }
+
+    #sabigara-blog .work-image {
+        width: 70%;
+    }
+
+    ul.tech-logos {
+        width: 80%;
+    }
+
+    .form-box {
+        width: 90%;
+    }
+
+    .contact-form input[name="email"] {
+        width: 50%;
+    }
+
+    .contact-form dl dt {
+        float: none;
+        clear: none;
+        padding-bottom: 0;
+    }
+
+    .contact-form dl dd {
+        padding: 0;
+    }
+}
+
+@media (max-width:600px) {
+
+    header a.logo h1 {
+        font-size: 1.2em;
+    }
+
+    div.top-box div {
+        font-size: 2.3em;
+    }
+
+    .work-title {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .work-title p {
+        text-align: center;
+        padding: 0;
+    }
+
+    #honsul .work-image {
+        width: 85%;
+    }
+
+    #sabigara-blog .work-image {
+        width: 85%;
+    }
+
+    div.skills {
+        margin-top: 40px;
+        margin-bottom: 80px;
+    }
+
+    .skill-description {
+        font-size: 1em;
+    }
+
+    ul.tech-logos {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width:400px) {
+    header a.logo h1 {
+        font-size: 1em;
+    }
+
+    div.top-box div {
+        font-size: 2em;
+    }
+}

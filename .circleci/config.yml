@@ -21,6 +21,6 @@ jobs:
             ssh-keyscan ${HOST_NAME} >> ~/.ssh/known_hosts
  
       - deploy:
-          name: Deploy
+          name: Deploying
           command: |
             ssh $USER_NAME@$HOST_NAME '~/deploy.sh'

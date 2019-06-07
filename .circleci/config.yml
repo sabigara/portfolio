@@ -21,6 +21,6 @@ jobs:
             ssh-keyscan ${HOST_NAME} >> ~/.ssh/known_hosts
  
       - deploy:
-          name: Start master deploy
+          name: Deploy
           command: |
             ssh -t $USER_NAME@$HOST_NAME '/opt/portfolio/deploy.sh'

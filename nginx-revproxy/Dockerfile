@@ -8,11 +8,20 @@ RUN rm entrykit_0.4.0_linux_x86_64.tgz
 RUN mv entrykit /usr/local/bin/
 RUN entrykit --symlink
 
-# ADD https://dl.eff.org/certbot-auto /usr/local/bin/certbot-auto
-# RUN chmod a+x /usr/local/bin/certbot-auto
-# RUN certbot-auto --os-packages-only -n
-# RUN certbot-auto --nginx -d matsura-yuma.site -d www.example.com -m your-account@gmail.com --agree-tos -n
-# RUN certbot-auto renew
+ADD https://dl.eff.org/certbot-auto /usr/local/bin/certbot-auto
+RUN chmod a+x /usr/local/bin/certbot-auto
+RUN certbot-auto --os-packages-only -n
+COPY ./cmd.sh /usr/local/bin/cmd.sh
+RUN chmod +x /usr/local/bin/cmd.sh
+
+# RUN git clone https://github.com/letsencrypt/letsencrypt
+# WORKDIR letsencrypt
+# RUN ls
+# RUN ./letsencrypt-auto --help
+# RUN ./letsencrypt-auto certonly --webroot -w /static -d matsura-yuma.site -d www.matsura-yuma.com -m lemonburst1958@gmail.com --agree-tos -n
+
+# RUN apt install letsencrypt
+# RUN letsencrypt certonly --webroot -w 
 
 RUN rm /etc/nginx/conf.d/*
 COPY nginx.conf.tmpl /etc/nginx/

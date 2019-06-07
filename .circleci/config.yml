@@ -23,7 +23,4 @@ jobs:
       - deploy:
           name: Start master deploy
           command: |
-            ssh $USER_NAME@$HOST_NAME \
-            'cd /opt;
-             sudo git clone https://github.com/sabigara/portfolio'
-            
+            ssh $USER_NAME@$HOST_NAME deploy.sh            

@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static '/css/normalize.css' %}">
+
+    {% block style %}{% endblock %}
+    <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <title>マツウラユウマのポートフォリオ</title>
+</head>
+
+<body>
+<header class="theme-color">
+    <div class="header-content global-width">
+        <a href="#top" class="logo js-smooth-scroll">
+            <h1>
+                <img src="{% static 'img/logo.png' %}">
+            </h1>
+        </a>
+        <nav class="global-nav">
+            <ul class="bottom-line-parent">
+                <li><a href="#top" class="bottom-line-cell js-smooth-scroll">トップ</a></li>
+                <li><a href="#works" class="bottom-line-cell js-smooth-scroll">制作物</a></li>
+                <li><a href="#skill" class="bottom-line-cell js-smooth-scroll">スキル</a></li>
+                <!-- <li><a href="#me" class="bottom-line-cell js-smooth-scroll">自己紹介</a></li> -->
+                <li><a href="#contact" class="bottom-line-cell js-smooth-scroll">お問い合わせ</a></li>
+            </ul>
+        </nav>
+        <div id="drawer-menu">
+            <input id="nav-input" type="checkbox" class="nav-hidden">
+            <label id="nav-open" for="nav-input"><span></span></label>
+            <label class="nav-hidden" id="nav-close" for="nav-input"></label>
+            <div id="drawer-content">
+                <nav class="drawer-nav ">
+                    <ul>
+                        <li><a href="#top" class="js-smooth-scroll">トップ</a></li>
+                        <li><a href="#works" class="js-smooth-scroll">制作物</a></li>
+                        <li><a href="#skill" class="js-smooth-scroll">スキル</a></li>
+                        <!-- <li><a href="#me" class="js-smooth-scroll">自己紹介</a></li> -->
+                        <li><a href="#contact" class="js-smooth-scroll">お問い合わせ</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<main>
+    {% block main %}{% endblock %}
+</main>
+
+<footer>
+    <div class="footer-content global-width">
+        <p><small>&COPY松浦悠磨</small></p>
+    </div>
+</footer>
+
+{% block script %}{% endblock %}
+
+</body>
+</html>

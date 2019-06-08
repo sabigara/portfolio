@@ -1,4 +1,6 @@
 Django==2.2
 gunicorn==19.9.0
+mido==1.2.9
+numpy==1.16.4
 pytz==2019.1
 sqlparse==0.3.0

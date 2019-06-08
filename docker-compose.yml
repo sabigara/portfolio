@@ -20,7 +20,7 @@ services:
       LOG_STDOUT: "false"
       STATIC_FOLDER: /static/
     volumes:
-      - static:/static
+      - ./web/static:/static
     networks: 
       - nginx_network
 
@@ -30,12 +30,15 @@ services:
       - "8000"
     restart: always
     volumes:
-      - static:/opt/portfolio/static
+      - ./web:/opt/portfolio
+#      - static:/opt/portfolio/static
+    environment:
+      DEBUG: "False"
     networks:
       - nginx_network
 
-volumes:
-  static:
+#volumes:
+#  static:
 
 networks:
   nginx_network:

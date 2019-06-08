@@ -14,15 +14,6 @@ RUN certbot-auto --os-packages-only -n
 COPY ./cmd.sh /usr/local/bin/cmd.sh
 RUN chmod +x /usr/local/bin/cmd.sh
 
-# RUN git clone https://github.com/letsencrypt/letsencrypt
-# WORKDIR letsencrypt
-# RUN ls
-# RUN ./letsencrypt-auto --help
-# RUN ./letsencrypt-auto certonly --webroot -w /static -d matsura-yuma.site -d www.matsura-yuma.com -m lemonburst1958@gmail.com --agree-tos -n
-
-# RUN apt install letsencrypt
-# RUN letsencrypt certonly --webroot -w 
-
 RUN rm /etc/nginx/conf.d/*
 COPY nginx.conf.tmpl /etc/nginx/
 COPY conf.d/ /etc/nginx/conf.d/

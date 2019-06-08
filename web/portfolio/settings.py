@@ -23,10 +23,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'gqx6krc*e5b2p^n4o4=&%cmz&p581%nyoj3$^!+gyzan)u+g)x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = os.environ['DEBUG'] == 'True'
 DEBUG = True
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
+    'localhost',
+    '192.168.0.30',
     '118.27.36.227',
     'www.matsura-yuma.site',
     'matsura-yuma.site'
@@ -60,8 +63,9 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join('portfolio_site', 'templates'),
-            os.path.join('midi_analyzer', 'templates')
+            os.path.join('portfolio-site', 'templates'),
+            os.path.join('midi-analyzer', 'templates'),
+            'templates'
             ],
         'APP_DIRS': True,
         'OPTIONS': {

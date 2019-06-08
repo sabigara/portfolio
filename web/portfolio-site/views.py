@@ -4,4 +4,4 @@ from django.template import loader
 
 
 def index(request):
-    return render(request, 'portfolio_site/index.html')
+    return render(request, 'portfolio-site/index.html')

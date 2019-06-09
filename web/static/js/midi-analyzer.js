@@ -74,7 +74,7 @@ function displayTracks(midiObj) {
         radio.setAttribute('type', 'radio');
         radio.setAttribute('class', 'track-button');
         radio.setAttribute('name', 'track-button');
-        radio.setAttribute('id', trackName);
+        // radio.setAttribute('id', trackName);
 
         const label = document.createElement('label');
         label.setAttribute('for', trackName);
@@ -88,7 +88,8 @@ function displayTracks(midiObj) {
         buttonList.appendChild(para);
     });
 
-    $('#button-list > p:first-child input + label').addClass('selected-track');
+    $('#button-list > p:first-child .track-button').prop('checked', true);
+    $('#button-list > p:first-child .track-button + label').addClass('selected-track');
 
     setFormEvents();
 }
@@ -113,22 +114,42 @@ function setFormEvents() {
 
     $('input.submit').on('click', function(e) {
         e.preventDefault();
-        analyzeMidi();
+        onSubmitClick();
     });
 }
 
-function analyzeMidi() {
-    fetch('analyze/').then(response => {
-        return response.json();
-    }).then(json => {
-        console.log(json);
-    }).catch(error => {
-        console.log(error)
-    });
+function onSubmitClick(e) {
+
+    const midiFile = $('#fileinput')[0].files[0];
+    if (!midiFile) { return }
+
+    const selectedTrackName = $('.track-button:checked').prop('value');
+    const formData = new FormData($('#file-form')[0]);
+    formData.append('selectedTrackName', selectedTrackName);
+
+    analyzeMidi(formData);
 }
 
+function analyzeMidi(formData) {
+
+    fetch('analyze/', {
+        method: 'post',
+        headers: {'Accept': 'application/json'},
+        body: formData,
+    })
+        .then(response => {
+            return response.json();
+        })
+        .then(json => {
+            console.log(json);
+        })
+        .catch(error => {
+            console.log(error)
+        });
+}
 
 $('#fileinput').on('change', function (e) {
+
     if (this.files) {
         $("#not-midi-warning")[0].style.visibility = 'hidden';
         const filename = this.files[0].name;
@@ -146,6 +167,7 @@ $('#fileinput').on('change', function (e) {
 });
 
 $('#fileinput').on('valid', (e) => {
+
     $('#button-list')[0].style.display = 'block';
     $('#file-submit')[0].style.display = 'inline';
 });
@@ -176,5 +198,4 @@ const shake = ((e, distance = 10, duration = 500) => {
     });
 
     animateIt();
-
 });

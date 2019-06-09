@@ -11,8 +11,9 @@
 <div class="fixed-screen-height center-all">
     <div class="content">
         <p id="not-midi-warning" style="visibility: hidden;">Not .mid!</p>
-        <form id="file-form" method="" enctype="multipart/form-data">
-            <p class="inputs"><input type="file" name="file" id="fileinput" class="inputfile"/>
+        <form id="file-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p class="inputs"><input type="file" name="midi-file" id="fileinput" class="inputfile"/>
             <label id="label-file" class="label-file" for="fileinput">
                 <span name='text'>Upload MIDI File</span>
             </label>

@@ -21,6 +21,7 @@ services:
       STATIC_FOLDER: /static/
     volumes:
       - ./web/static:/static
+      - ./letsencrypt:/etc/letsencrypt
     networks: 
       - nginx_network
 
@@ -31,14 +32,10 @@ services:
     restart: always
     volumes:
       - ./web:/opt/portfolio
-#      - static:/opt/portfolio/static
     environment:
       DEBUG: "False"
     networks:
       - nginx_network
-
-#volumes:
-#  static:
 
 networks:
   nginx_network:

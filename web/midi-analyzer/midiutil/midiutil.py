@@ -52,7 +52,7 @@ def parse_midi(file_name, track_name):
     # User inputs the number of notes to be analized as element of a chord
     chord_tone_num = int(4)
 
-    f = mido.MidiFile(os.path.join('app/static/data', file_name))
+    f = mido.MidiFile(file_name)
 
     if track_name not in [track.name for track in f.tracks]:
         return
@@ -150,5 +150,5 @@ def parse_midi(file_name, track_name):
                     for cho_name in chords.values()]
     chord_sheet = [chord_list[i:i+chunk] for i in range(0, len(chord_list), chunk)]
 
-    return [list(map((lambda n: n[0:-2] if n[-2:] == '[]' else n),  row)) for row in chord_sheet]
+    return [list(map((lambda n: n[0:-2] if n[-2:] == '[]' else n), row)) for row in chord_sheet]
     

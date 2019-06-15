@@ -10,18 +10,19 @@
 
 <div class="fixed-screen-height center-all">
     <div class="content">
-        <p id="not-midi-warning" style="visibility: hidden;">Not .mid!</p>
-        <form id="file-form" method="" enctype="multipart/form-data">
-            <p class="inputs"><input type="file" name="file" id="fileinput" class="inputfile"/>
-            <label id="label-file" class="label-file" for="fileinput">
-                <span name='text'>Upload MIDI File</span>
+{#        <p id="not-midi-warning" style="visibility: hidden;">MIDIファイルじゃありません！</p>#}
+        <form id="file-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p class="file">
+                <input type="file" name="midi-file" id="fileinput" class="inputfile"/>
+                <label id="label-file" class="label-file" for="fileinput">
+                <span name='text'>MIDIファイルを選択</span>
             </label>
             </p>
             <div id="button-list" style="display: none;"></div>
-            <p><input type='submit' class="submit" value="Analize" id="file-submit" style="display: none"></p>
+            <p><input type='submit' class="submit" value="解析" id="file-submit" style="display: none"></p>
         </form>
         {% load static %}
-        <img height="30px" width="30px" id="analizing-gif" src="{% static '/gif/analizing.gif' %}" style="visibility: hidden;"/>
     </div>
 </div>
 {% endblock %}

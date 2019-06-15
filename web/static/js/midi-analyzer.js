@@ -42,9 +42,6 @@ function getBase64(file) {
     };
 }
 
-function expand_tracks(file) {
-    getBase64(file)
-}
 
 function displayTracks(midiObj) {
     const buttonList = $('#button-list')[0];
@@ -88,13 +85,15 @@ function displayTracks(midiObj) {
         buttonList.appendChild(para);
     });
 
-    $('#button-list > p:first-child input + label').addClass('selected-track');
+    $('#button-list > p:first-child input.track-button').prop('checked', true);
+    $('#button-list > p:first-child input.track-button + label').addClass('selected-track');
 
-    setFormEvents();
+    setTrackButtonEvents();
+
 }
 
-function setFormEvents() {
-    const trackButtons = $('input[name="track-button"]');
+function setTrackButtonEvents() {
+    const trackButtons = $('input.track-button');
     trackButtons.each(function (index, button) {
 
         $(button).on('click', function(e) {
@@ -110,27 +109,86 @@ function setFormEvents() {
             $(this).next().removeClass('selected-track');
         });
     });
-
-    $('input.submit').on('click', function(e) {
-        e.preventDefault();
-        analyzeMidi();
-    });
 }
 
-function analyzeMidi() {
-    fetch('analyze/').then(response => {
-        return response.json();
-    }).then(json => {
-        console.log(json);
-    }).catch(error => {
-        console.log(error)
-    });
+$('input.submit').on('click', function(e) {
+    e.preventDefault();
+    onSubmitClick();
+});
+
+function onSubmitClick(e) {
+
+    const midiFile = $('#fileinput')[0].files[0];
+    if (!midiFile) { return }
+
+    const selectedTrackName = $('.track-button:checked').prop('value');
+    const formData = new FormData($('#file-form')[0]);
+    formData.append('selectedTrackName', selectedTrackName);
+
+    showSpinner();
+
+    analyzeMidi(formData)
+        .then(() => {
+            hideSpinner();
+        });
 }
 
+function showSpinner() {
+    $('.spinner-container').removeClass('spinner-off');
+    $('.spinner-container').addClass('spinner-on');
+}
+
+function hideSpinner() {
+    $('.spinner-container').removeClass('spinner-on');
+    $('.spinner-container').addClass('spinner-off');
+}
+
+function analyzeMidi(formData) {
+
+    return fetch('analyze/', {
+        method: 'post',
+        headers: {'Accept': 'text/plain'},
+        body: formData,
+    })
+        .then(response => {
+            if (isError(response.status)) {
+                alertError(response);
+                return Promise.reject(new Error());
+            }
+            return response.blob();
+        })
+        .then(blob => {
+            letUserDownload(blob)
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
+
+function isError(statusCode) {
+    const thirdDigit = statusCode.toString().charAt(0);
+    return thirdDigit !== '2';
+}
+
+function alertError(response) {
+    response.text()
+        .then((text) => {
+            alert(text);
+        })
+}
+
+function letUserDownload(blob) {
+    const fileName = $('#fileinput')[0].files[0].name;
+    const anchor = document.createElement('a');
+    anchor.href = window.URL.createObjectURL(blob);
+    anchor.download = `${fileName.slice(0, -4)}-chords.txt`;
+    anchor.click();
+}
 
 $('#fileinput').on('change', function (e) {
+
     if (this.files) {
-        $("#not-midi-warning")[0].style.visibility = 'hidden';
+        // $("#not-midi-warning")[0].style.visibility = 'hidden';
         const filename = this.files[0].name;
         if (filename.substring(filename.length - 4, filename.length) === '.mid') {
             label.children.text.innerHTML = filename;
@@ -138,7 +196,7 @@ $('#fileinput').on('change', function (e) {
             $('#fileinput').trigger('valid');
             getBase64(this.files[0]);
         } else {
-            $("#not-midi-warning")[0].style.visibility = 'visible';
+            // $("#not-midi-warning")[0].style.visibility = 'visible';
             $('#fileinput').trigger('invalid');
         }
         this.blur();
@@ -146,6 +204,7 @@ $('#fileinput').on('change', function (e) {
 });
 
 $('#fileinput').on('valid', (e) => {
+
     $('#button-list')[0].style.display = 'block';
     $('#file-submit')[0].style.display = 'inline';
 });
@@ -176,5 +235,4 @@ const shake = ((e, distance = 10, duration = 500) => {
     });
 
     animateIt();
-
 });

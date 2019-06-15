@@ -92,3 +92,4 @@ venv
 .idea
 
 media
+letsencrypt

@@ -1,7 +1,7 @@
 
 server {
     listen {{ var "SERVER_PORT" | default "80" }};
-    server_name {{ var "SERVER_NAME" | default "localhost" }} www.{{ var "SERVER_NAME" | default "localhost" }};
+    server_name {{ var "SERVER_NAME" }} www.{{ var "SERVER_NAME" }};
     charset utf-8;
 
     {{ if var "STATIC_FOLDER" }}
@@ -33,6 +33,10 @@ server {
         auth_basic_user_file {{ var "BASIC_AUTH_FILE" }};
         {{ end }}
     }
+
+    listen 443 ssl;
+    ssl_certificate     /etc/letsencrypt/live/{{ var "SERVER_NAME" }}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/{{ var "SERVER_NAME" }}/privkey.pem;
 }
 
 

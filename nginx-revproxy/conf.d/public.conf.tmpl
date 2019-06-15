@@ -1,6 +1,11 @@
+server {
+    listen 80;
+    server_name {{ var "SERVER_NAME" }} www.{{ var "SERVER_NAME" }};
+    return 301 https://$host$request_uri;
+}
 
 server {
-    listen {{ var "SERVER_PORT" | default "80" }};
+    listen 443 ssl;
     server_name {{ var "SERVER_NAME" }} www.{{ var "SERVER_NAME" }};
     charset utf-8;
 
@@ -11,7 +16,7 @@ server {
         expires max;
         add_header Cache-Control public;
     }
-    
+
     location /.well-known {
         root {{ var "STATIC_FOLDER" }};
     }
@@ -33,10 +38,6 @@ server {
         auth_basic_user_file {{ var "BASIC_AUTH_FILE" }};
         {{ end }}
     }
-
-    listen 443 ssl;
     ssl_certificate     /etc/letsencrypt/live/{{ var "SERVER_NAME" }}/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/{{ var "SERVER_NAME" }}/privkey.pem;
 }
-
-

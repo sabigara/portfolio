@@ -44,3 +44,40 @@ window.addEventListener("scroll", e => {
         }
     });
 });
+
+const contactForm = document.querySelector('#contact-form');
+contactForm.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const formData = new FormData(contactForm);
+    const submitBtn = contactForm.querySelector('input[type="submit"]');
+    submitBtn.disabled = true;
+
+    fetch('contact/', {
+        method: 'post',
+        body: formData
+    })
+        .then(response => {
+            if (isError(response)) {
+                return Promise.reject(new Error())
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        })
+        .finally( () => {
+            submitBtn.disabled = false;
+        })
+});
+
+function isError(statusCode) {
+    const thirdDigit = statusCode.toString().charAt(0);
+    return thirdDigit !== '2';
+}
+
+function alertError(response) {
+    response.text()
+        .then((text) => {
+            alert(text);
+        })
+}

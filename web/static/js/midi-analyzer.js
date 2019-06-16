@@ -165,18 +165,6 @@ function analyzeMidi(formData) {
         });
 }
 
-function isError(statusCode) {
-    const thirdDigit = statusCode.toString().charAt(0);
-    return thirdDigit !== '2';
-}
-
-function alertError(response) {
-    response.text()
-        .then((text) => {
-            alert(text);
-        })
-}
-
 function letUserDownload(blob) {
     const fileName = $('#fileinput')[0].files[0].name;
     const anchor = document.createElement('a');

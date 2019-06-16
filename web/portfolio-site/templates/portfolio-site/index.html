@@ -203,7 +203,8 @@
             </div>
             <div class="contact-form global-width section-container">
                 <div class="form-box">
-                    <form action="program.php" method="post">
+                    <form id="contact-form" action="#" method="post">
+                        {% csrf_token %}
                         <dl>
                             <dt>名前</dt>
                             <dd>
@@ -216,7 +217,7 @@
                             <dt>メールアドレス</dt>
                             <dd><input type="email" name="email" required placeholder="example@test.com"></dd>
                             <dt>お問い合わせ・ご質問内容</dt>
-                            <dd><textarea name="comment" cols="20" rows="5" required></textarea></dd>
+                            <dd><textarea name="message" cols="20" rows="5" required></textarea></dd>
                         </dl>
                         <p class="submit"><input type="submit" name="submit" value="送信" class="theme-color"></p>
                     </form>

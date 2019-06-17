@@ -11,26 +11,22 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import environ
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+env = environ.Env(
+    DEBUG=(bool, False)
+)
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
+environ.Env.read_env()
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'gqx6krc*e5b2p^n4o4=&%cmz&p581%nyoj3$^!+gyzan)u+g)x'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = os.environ['DEBUG'] == 'True'
-DEBUG = True
+DEBUG = env('DEBUG')
+SECRET_KEY = env('SECRET_KEY')
 
 ALLOWED_HOSTS = [
-    '127.0.0.1',
     'localhost',
-    '192.168.0.30',
-    '118.27.36.227',
     'www.matsura-yuma.site',
     'matsura-yuma.site'
 ]
@@ -136,8 +132,8 @@ STATICFILES_DIRS = (
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_SSL = True
-EMAIL_PORT = 465
-EMAIL_HOST_USER = 'lemonburst1958@gmail.com'
-EMAIL_HOST_PASSWORD = 'ozafohuwhxvryzta'
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_USE_SSL = env('EMAIL_USE_SSL')
+EMAIL_PORT = env('EMAIL_PORT')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')

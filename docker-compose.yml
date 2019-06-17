@@ -32,8 +32,6 @@ services:
     restart: always
     volumes:
       - ./web:/opt/portfolio
-    environment:
-      DEBUG: "False"
     networks:
       - nginx_network
 

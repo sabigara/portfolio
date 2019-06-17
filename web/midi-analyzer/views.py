@@ -16,8 +16,9 @@ def index(request):
 def analyze(request):
 
     midi_file = request.FILES['midi-file']
-    # Exclude first 2 letters, which are added by JS
-    track_name = request.POST['selectedTrackName'][2:]
+    # Exclude first 3 letters, which are added by JS
+    # e.g. '03 '
+    track_name = request.POST['selectedTrackName'][3:]
 
     with TemporaryDirectory() as tdir:
         midi_file_path = os.path.join(tdir, midi_file.name)

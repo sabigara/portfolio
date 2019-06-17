@@ -53,7 +53,7 @@ function displayTracks(midiObj) {
         track['event'].forEach((event) => {
             if (event.hasOwnProperty('metaType')) {
                 if (event['metaType'] == '3') {
-                    trackNames.push(trackNo + " " + event['data']);
+                    trackNames.push(trackNo.toString().padStart(2, '0') + " " + event['data']);
                     trackNo++;
                 }
             }

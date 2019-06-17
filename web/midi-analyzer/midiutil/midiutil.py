@@ -3,8 +3,8 @@ import numpy as np
 from operator import itemgetter
 from .note import Note
 from ..pychore import ChordRecognizer, Chord, ChordName
-import os
 from functools import reduce
+
 
 def num_to_symbol(num):
         if num in range(0, 150, 12):
@@ -32,16 +32,13 @@ def num_to_symbol(num):
         if num in range(11, 150, 12):
             return "B"
 
+
 def check_if_octave(chord_notes, note):
     for i in range(12, 132, 12):
         if note + i in chord_notes or note - i in chord_notes:
             return True
         else:
             return False
-
-def expand_tracks(file):
-    f = mido.MidiFile(os.path.join('app/static/data', file.filename))
-    return [t.name for t in f.tracks]
 
 
 def parse_midi(file_name, track_name):

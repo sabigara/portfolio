@@ -1,12 +1,23 @@
 server {
     listen 80;
     server_name {{ var "SERVER_NAME" }} www.{{ var "SERVER_NAME" }};
-    return 301 https://$host$request_uri;
+    return 301 https://{{ var "SERVER_NAME" }}$request_uri;
 }
 
 server {
     listen 443 ssl;
-    server_name {{ var "SERVER_NAME" }} www.{{ var "SERVER_NAME" }};
+    server_name www.{{ var "SERVER_NAME" }};
+    return 301 https://{{ var "SERVER_NAME" }}$request_uri;
+
+    ssl_certificate /etc/letsencrypt/live/{{ var "SERVER_NAME" }}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/{{ var "SERVER_NAME" }}/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+}
+
+server {
+    listen 443 ssl;
+    server_name {{ var "SERVER_NAME" }};
     charset utf-8;
 
     {{ if var "STATIC_FOLDER" }}
@@ -38,6 +49,8 @@ server {
         auth_basic_user_file {{ var "BASIC_AUTH_FILE" }};
         {{ end }}
     }
-    ssl_certificate     /etc/letsencrypt/live/{{ var "SERVER_NAME" }}/fullchain.pem;
+    ssl_certificate /etc/letsencrypt/live/{{ var "SERVER_NAME" }}/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/{{ var "SERVER_NAME" }}/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
 }

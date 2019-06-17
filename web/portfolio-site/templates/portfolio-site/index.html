@@ -258,7 +258,10 @@
                             <dt>お問い合わせ・ご質問内容</dt>
                             <dd><textarea name="message" cols="20" rows="5" required></textarea></dd>
                         </dl>
-                        <p class="submit"><input type="submit" name="submit" value="送信" class="theme-color"></p>
+                        <p class="submit">
+                            <input type="submit" name="submit" value="送信" class="theme-color">
+                            <img src="{% static '/img/spinner.svg' %}" alt="spinner">
+                        </p>
                     </form>
                 </div>
             </div>

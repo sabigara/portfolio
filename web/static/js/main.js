@@ -46,28 +46,51 @@ window.addEventListener("scroll", e => {
 });
 
 const contactForm = document.querySelector('#contact-form');
-contactForm.addEventListener('submit', e => {
+const submitBtn = contactForm.querySelector('input[type="submit"]');
+const fetchStart = new Event('fetchStart');
+const fetchSuccess = new Event('fetchSuccess');
+const fetchFail = new Event('fetchFail');
+
+contactForm.addEventListener('submit', async e => {
     e.preventDefault();
 
     const formData = new FormData(contactForm);
-    const submitBtn = contactForm.querySelector('input[type="submit"]');
-    submitBtn.disabled = true;
+    submitBtn.dispatchEvent(fetchStart);
 
     fetch('contact/', {
         method: 'post',
         body: formData
     })
         .then(response => {
-            if (isError(response)) {
+            if (isError(response.status)) {
                 return Promise.reject(new Error())
             }
+
+            submitBtn.dispatchEvent(fetchSuccess)
         })
         .catch(error => {
-            console.log(error);
+            submitBtn.dispatchEvent(fetchFail);
         })
-        .finally( () => {
-            submitBtn.disabled = false;
-        })
+});
+
+submitBtn.addEventListener('fetchStart', e => {
+    submitBtn.setAttribute('value', '');
+    submitBtn.nextElementSibling.classList.add('active');
+});
+
+submitBtn.addEventListener('fetchSuccess', e => {
+    submitBtn.setAttribute('value', 'Thanks!');
+    setTimeout(
+        () => submitBtn.setAttribute('value', '送信'),
+        3000
+    );
+    submitBtn.nextElementSibling.classList.remove('active');
+});
+
+submitBtn.addEventListener('fetchFail', e => {
+    alert('メッセージの送信に失敗しました');
+    submitBtn.setAttribute('value', '送信');
+    submitBtn.nextElementSibling.classList.remove('active');
 });
 
 function isError(statusCode) {
@@ -80,4 +103,8 @@ function alertError(response) {
         .then((text) => {
             alert(text);
         })
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }

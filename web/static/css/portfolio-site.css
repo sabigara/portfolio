@@ -542,6 +542,10 @@ div.box h3 {
 .contact-form .submit {
     margin: 10px 0;
     text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .contact-form input[type="submit"] {
@@ -554,6 +558,22 @@ div.box h3 {
 
 .contact-form input[type="submit"]:hover {
     opacity: 0.8;
+}
+
+.contact-form img {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 25px;
+    height: 25px;
+}
+
+.contact-form img.active {
+    display: inline;
 }
 
 /* last child */

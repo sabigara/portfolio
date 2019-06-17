@@ -21,4 +21,4 @@ def contact(request):
         ['lemonburst1958@gmail.com'],
         fail_silently=False
     )
-    return HttpResponse()
+    return HttpResponse(status=200)

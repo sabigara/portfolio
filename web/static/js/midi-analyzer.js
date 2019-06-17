@@ -170,6 +170,9 @@ function letUserDownload(blob) {
     const anchor = document.createElement('a');
     anchor.href = window.URL.createObjectURL(blob);
     anchor.download = `${fileName.slice(0, -4)}-chords.txt`;
+    anchor.style.display = 'none';
+    // Firefox require dom to be appended to be clicked.
+    document.body.appendChild(anchor);
     anchor.click();
 }
 

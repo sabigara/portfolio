@@ -1,5 +1,5 @@
 #!/bin/sh
 
-cd /opt/portfolio
+cd ~/portfolio
 sudo git pull https://github.com/sabigara/portfolio
-
+docker-compose up -d --build

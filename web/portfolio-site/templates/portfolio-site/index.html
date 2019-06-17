@@ -49,9 +49,6 @@
                                     メールアドレス認証、パスワード変更、モデルへのCRUDといった基本的な動作に加え、
                                     本の情報をamazonのAPIから取得することなどもできます。
                                 </p>
-                                <p>
-                                    このアプリはheroku上で運用していますが、一般的なLinuxサーバーへデプロイするスキルもあります。
-                                </p>
                             </div>
 
                         </div>
@@ -66,6 +63,79 @@
                                 App Store
                             </a>
                         </div>
+                    </div>
+                </section>
+                <section id="portfolio">
+                    <div class="work-box global-width">
+                        <div class="col-2 flex-rev">
+                            <p class="img-box">
+                                {% load static %}
+                                <img class="work-image" src="{% static 'img/portfolio.png' %}">
+                            </p>
+                            <div class="work-description">
+                                <div class="work-title">
+                                    <h3>ポートフォリオサイト</h3>
+{#                                    <p class="sub-title">このサイト</p>#}
+                                </div>
+                                <p>
+                                    このサイトです。
+                                    <br>
+                                    ホスティングサービスなどを使わず、Linuxサーバを０から構築することを目標にしました。
+                                </p>
+                                <h4>技術</h4>
+                                <p>
+                                    DjangoアプリとNginxをdocker-composeでコンテナ化しています。
+                                    githubのmasterブランチへのpushにより、CircleCIがVPS上に自動デプロイします。
+                                    また、https対応はLet's Encryptを使用しています。
+                                </p>
+                                <p>
+                                    bootstrapなどは使用せず、cssはスクラッチから記述しました。
+                                </p>
+                                <p>
+                                </p>
+                            </div>
+
+                        </div>
+                        <ul class="tech-logos">
+                            <li><img src="{% static 'img/tech-logos/python.svg' %}" alt="python,logo"></li>
+                            <li><img src="{% static 'img/tech-logos/django.svg' %}" alt="django,logo"></li>
+                            <li><img src="{% static 'img/tech-logos/docker.svg' %}" alt="docker,logo"></li>
+                            <li><img src="{% static 'img/tech-logos/circleci.svg' %}" alt="circleci,logo"></li>
+                            <li><img src="{% static 'img/tech-logos/letsencrypt.svg' %}" alt="letsencrypt,logo"></li>
+                        </ul>
+                    </div>
+                </section>
+                <section id="portfolio">
+                    <div class="work-box global-width">
+                        <div class="col-2">
+                            <p class="img-box">
+                                {% load static %}
+                                <img class="work-image" src="{% static 'img/midi-analyzer.png' %}">
+                            </p>
+                            <div class="work-description">
+                                <div class="work-title">
+                                    <h3>コード進行解析ツール</h3>
+{#                                    <p class="sub-title">このサイト</p>#}
+                                </div>
+                                <p>
+                                    MIDIファイルを解析し、コード（和音）進行をテキスト化して返すwebアプリです。
+                                </p>
+                                <h4>技術</h4>
+                                <p>
+                                    JSを使用することで、MIDI/非MIDIの判別やトラック名の取得などをフロントで行っています。
+                                    また、動的なDOM生成やAJAX（fetch）によって、リロード無しでの利用が可能です。
+                                </p>
+                                <p>
+                                    このポートフォリオサイトの一部として運用中です。
+                                </p>
+                                <p>
+                                </p>
+                            </div>
+
+                        </div>
+                            <div class="btn-wrap">
+                                <a class="theme-color" href="/midi-analyzer/" target="_blank">サイト</a>
+                            </div>
                     </div>
                 </section>
                 <section id="sabigara-blog">
@@ -100,25 +170,12 @@
                         </div>
                         <ul class="tech-logos">
                                 <li><img src="{% static 'img/tech-logos/wordpress.svg' %}" alt="wordpress,logo"></li>
-                            </ul>
-                            <div class="btn-wrap">
-                                <a class="theme-color" href="https://sabi-gara.com" target="_blank">サイト</a>
-                            </div>
-                    </div>
-                </section>
-            <!-- </div> -->
-            <!-- <section id="songs">
-                    <div class="work-box col-2 flex-rev global-width">
-                        <div class="work-description">
-                                <h3>作った曲</h3>
-                            <p>
-
-                            </p>
+                        </ul>
+                        <div class="btn-wrap">
+                            <a class="theme-color" href="https://sabi-gara.com" target="_blank">サイト</a>
                         </div>
-                        <iframe width="80%" height="350" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/550144029&color=%2300d1ff&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
                     </div>
                 </section>
-        </section> -->
     </section>
     <section id="skill" class="content-section">
         <div class="section-title">
@@ -155,9 +212,6 @@
                         Linux環境でのWEBサービス構築はひと通り可能です。
                         DockerコンテナをVPSやEC2上へデプロイした経験もあります。
                     </p>
-                    <p>
-                        CLツールはまだ使用したことがないので勉強していきたいと思っています。
-                    </p>
                 </div>
             </div>
             <div id="front-lang" class="box">
@@ -180,23 +234,8 @@
             </div>
         </div>
     </section>
-    <!-- <section id="me" class="content-section">
-        <div class="section-title">
-            <h2>自己紹介</h2>
-        </div>
-        <div class="boxes global-width section-container">
-            <div id="server-lang" class="box">
-                <h3>趣味</h3>
-                <div class="box-description">
-                    <p>
-
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section> -->
     <section id="contact" class="content-section">
-        <!-- <div class="container"> -->
+        <div class="container">
             <div class="section-title">
                 <h2>お問い合わせ</h2>
                 <!-- <p class="">ここに説明文</p> -->
@@ -223,7 +262,7 @@
                     </form>
                 </div>
             </div>
-        <!-- </div> -->
+        </div>
     </section>
 </div>
 {% endblock %}

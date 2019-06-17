@@ -1,5 +1,13 @@
 /* general */
 
+:root {
+    --header-height: 53px;
+    --footer-height: 72px;
+    --file-height: 50px;
+    --submit-height: 50px;
+
+}
+
 html {
     height: 100%;
     font-size: 16px;
@@ -390,27 +398,29 @@ div.top-box div {
     padding-left: 60px;
     /* line-height: 2; */
     width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .img-box {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-#honsul .work-description {
-    padding-top: 30px;
-    width: 600px;
-}
+/*#honsul .work-description {*/
+/*    padding-top: 30px;*/
+/*    width: 600px;*/
+/*}*/
 
 #honsul h3 span.sub-title {
     vertical-align: 1px;
 }
 
-#honsul .work-image {
+.work-image {
     width: 500px;
-}
-
-#sabigara-blog .work-image {
-    width: 600px;
 }
 
 
@@ -480,6 +490,10 @@ div.box h3 {
 
 /* contact */
 
+#contact .container {
+    height: calc(100vh - var(--header-height) - var(--footer-height));
+}
+
 .contact-form {
     margin: 0 auto;
     padding: 50px 0;
@@ -496,7 +510,7 @@ div.box h3 {
 }
 
 .contact-form p {
-    margin: 0 0 5 0px;
+    margin: 0 0 5px 0;
 }
 .contact-form dl {
     margin: 0;
@@ -554,6 +568,7 @@ div.box h3 {
 /* footer */
 
 footer {
+    /*height: var(--footer-height);*/
     background-color: #bfefe2;
 }
 
@@ -563,6 +578,7 @@ footer .footer-content {
 }
 
 footer .footer-content p {
+    margin: 0;
     text-align: center;
 }
 
@@ -642,9 +658,9 @@ footer .footer-content p {
         transform: translateX(-50%)
     }
 
-    header a.logo h1 {
-        width: 370px;
-    }
+    /*header a.logo h1 {*/
+    /*    width: 370px;*/
+    /*}*/
 
     
     #honsul .work-description {
@@ -656,11 +672,7 @@ footer .footer-content p {
         margin: 0 auto;
     }
 
-    #honsul .work-image {
-        width: 70%;
-    }
-
-    #sabigara-blog .work-image {
+    .work-image {
         width: 70%;
     }
 
@@ -707,11 +719,7 @@ footer .footer-content p {
         padding: 0;
     }
 
-    #honsul .work-image {
-        width: 85%;
-    }
-
-    #sabigara-blog .work-image {
+    .work-image {
         width: 85%;
     }
 
@@ -727,10 +735,6 @@ footer .footer-content p {
     ul.tech-logos {
         margin-top: 20px;
         margin-bottom: 20px;
-    }
-
-    .footer-content > p {
-        margin: 0;
     }
 }
 

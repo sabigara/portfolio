@@ -92,19 +92,3 @@ submitBtn.addEventListener('fetchFail', e => {
     submitBtn.setAttribute('value', '送信');
     submitBtn.nextElementSibling.classList.remove('active');
 });
-
-function isError(statusCode) {
-    const thirdDigit = statusCode.toString().charAt(0);
-    return thirdDigit !== '2';
-}
-
-function alertError(response) {
-    response.text()
-        .then((text) => {
-            alert(text);
-        })
-}
-
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}

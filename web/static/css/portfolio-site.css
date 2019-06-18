@@ -733,6 +733,10 @@ footer .footer-content p {
         font-size: 2.3em;
     }
 
+    .work-title {
+        display: block;
+    }
+
     #works h3 {
         font-size: 1.8em;
     }

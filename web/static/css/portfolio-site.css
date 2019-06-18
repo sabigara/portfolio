@@ -631,6 +631,10 @@ footer .footer-content p {
         display: block;
     }
 
+    .work-title {
+        margin: 40px 0 10px 0;
+    }
+
     .work-box .work-description {
         width: 600px;
         margin: 0 auto;
@@ -729,9 +733,8 @@ footer .footer-content p {
         font-size: 2.3em;
     }
 
-    .work-title {
-        display: block;
-        margin: 0 auto;
+    #works h3 {
+        font-size: 1.8em;
     }
 
     .work-title p {
@@ -759,6 +762,11 @@ footer .footer-content p {
 }
 
 @media (max-width:400px) {
+
+    #works h3 {
+        font-size: 1.5em;
+    }
+
     header a.logo h1 {
         font-size: 1em;
     }

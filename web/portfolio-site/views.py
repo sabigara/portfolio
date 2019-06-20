@@ -22,3 +22,6 @@ def contact(request):
         fail_silently=False
     )
     return HttpResponse(status=200)
+
+def resume(request):
+    return render(request, 'portfolio-site/resume.html')
